@@ -1,0 +1,83 @@
+-------------------------------------------------
+vue-cli
+-------------------------------------------------
+npm install -g vue-cli
+vue init webpack-simple hello-vue
+cd hello-vue
+npm install
+npm run dev # ready to go!
+
+-------------------------------------------------
+eslint
+-------------------------------------------------
+NAGA-MAC:vue-tutorial-02 nagazumi$ npm install --save-dev eslint
++ eslint@4.7.1
+added 83 packages in 16.902s
+
+NAGA-MAC:vue-tutorial-02 nagazumi$ npm install --save-dev eslint-plugin-vue@beta
++ eslint-plugin-vue@3.13.0
+added 4 packages in 6.413s
+
+NAGA-MAC:vue-tutorial-02 nagazumi$ eslint --init
+? How would you like to configure ESLint? Answer questions about your style
+? Are you using ECMAScript 6 features? Yes
+? Are you using ES6 modules? Yes
+? Where will your code run? Browser
+? Do you use CommonJS? No
+? Do you use JSX? No
+? What style of indentation do you use? Spaces
+? What quotes do you use for strings? Single
+? What line endings do you use? Unix
+? Do you require semicolons? Yes
+? What format do you want your config file to be in? JavaScript
+Successfully created .eslintrc.js file in /Users/nagazumi/DEV-NAO/SANDBOX/SandBox/vue-tutorial-02
+
+
+add eslint by vi
+------------------
+module.exports = {
+  extends: [
+    'eslint:recommended',
+    'plugin:vue/recommended' // or 'plugin:vue/base'
+  ],
+  rules: {
+    // override/add rules' settings here
+    'vue/valid-v-if': 'error'
+  }
+}
+------------------
+
+NAGA-MAC:vue-tutorial-02 nagazumi$ cat .eslintrc.js
+module.exports = {
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:vue/recommended"
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "vue/valid-v-if": "error"
+    }
+};
+
