@@ -4,7 +4,10 @@ module.exports = {
         "commonjs": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+      "eslint:recommended",
+      "plugin:vue/recommended"
+    ],
     "parserOptions": {
         "sourceType": "module"
     },
@@ -24,6 +27,7 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "vue/valid-v-if": "error"
     }
 };

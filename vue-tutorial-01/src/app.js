@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import myComponent from './my-component';
 
-const helloApp = Vue.extend({
+export default Vue.extend({
   data: function () {
     return {
       message: 'Hello World',
@@ -28,10 +28,4 @@ const helloApp = Vue.extend({
     />
   `,
   components: { myComponent },
-});
-
-new Vue({
-  el: '#app',
-  template: '<helloApp />',
-  components: { helloApp },
 });

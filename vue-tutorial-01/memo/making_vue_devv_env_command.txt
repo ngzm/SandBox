@@ -240,3 +240,291 @@ module.exports = {
     }
 };
 ---------------------------------------------------
+
+---------------------------------------------------
+vue-loader
+---------------------------------------------------
+
+NAGA-MAC:vue-tutorial-01 nagazumi$ npm install --save-dev vue-loader
+npm WARN vue-loader@13.0.5 requires a peer of vue-template-compiler@^2.0.0 but none was installed.
+
++ vue-loader@13.0.5
+added 18 packages in 27.304s
+
+#### vue-template-compiler がないとbuildでエラーとなるのでインストールする
+NAGA-MAC:vue-tutorial-01 nagazumi$ npm install --save-dev vue-template-compiler
++ vue-template-compiler@2.4.4
+added 3 packages in 5.857s
+
+NAGA-MAC:vue-tutorial-01 nagazumi$ vim webpack.config.js
+---
+var path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public')
+  },
+  module: {
+    loaders: [
+      // ---------------
+      // vue-loader 追加
+      // ---------------
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+          }
+        }
+      },
+      // ---------------
+      {
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.js'
+    },
+  },
+};
+---
+
+---------------------------------------------------
+eslint for vue
+---------------------------------------------------
+NAGA-MAC:src nagazumi$ npm install --save-dev eslint-plugin-vue@beta
+npm WARN vue-loader@13.0.5 requires a peer of vue-template-compiler@^2.0.0 but none was installed.
+
++ eslint-plugin-vue@3.13.0
+added 4 packages in 24.094s
+
+NAGA-MAC:vue-tutorial-01 nagazumi$ cat .eslintrc.js
+--------
+module.exports = {
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:vue/recommended" <--- 追加
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "vue/valid-v-if": "error" <--- 追加
+    }
+};
+--------
+
+---------------------------------------------------
+copy webpack plugin
+---------------------------------------------------
+NAGA-MAC:vue-tutorial-01 nagazumi$ npm install --save-dev copy-webpack-plugin
++ copy-webpack-plugin@4.0.1
+added 10 packages in 12.688s
+
+NAGA-MAC:vue-tutorial-01 nagazumi$ cat webpack.config.js
+---
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin'); <-- 追加
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public')
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.vue$/,
+        include: /src/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+          }
+        }
+      },
+      {
+        test: /\.js$/,
+        include: /src/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.png$/,
+        include: /src/,
+        loader: 'file-loader',
+        options: {},
+      },
+    ],
+  },
+  /** 追加 ↓
+   */
+  plugins: [ 
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, 'src', 'index.html'),
+    }]),
+  ],
+  /** 追加 上
+   */
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.js'
+    },
+  },
+};
+
+---
+
+---------------------------------------------------
+webpack dev server
+---------------------------------------------------
+
+NAGA-MAC:vue-tutorial-01 nagazumi$ npm install --save-dev webpack-dev-server
++ webpack-dev-server@2.8.2
+added 135 packages in 32.035s
+
+
+NAGA-MAC:vue-tutorial-01 nagazumi$ vim webpack.config.js
+--
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public')
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.vue$/,
+        include: /src/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+          }
+        }
+      },
+      {
+        test: /\.js$/,
+        include: /src/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.png$/,
+        include: /src/,
+        loader: 'file-loader',
+        options: {},
+      },
+    ],
+  },
+  plugins: [
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, 'src', 'index.html'),
+    }]),
+  ],
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.js'
+    },
+  },
+  /**
+   * 追加
+   */
+  devServer: {
+    contentBase: 'public', // Relative directory for base of server
+    port: 3000, // Port Number
+    host: 'localhost', // Change to '0.0.0.0' for external facing server
+    historyApiFallback: true,
+  },
+  /**
+   * 追加
+   */
+};
+------
+
+NAGA-MAC:vue-tutorial-01 nagazumi$ cat package.json
+-----
+{
+  "name": "vue-tutorial01",
+  "version": "1.0.0",
+  "description": "Vue.js tutorial project",
+  "author": "naoki-nagazumi <naoki.nagazumi@ntt-at.co.jp>",
+  "private": true,
+  "main": "index.js",
+  "license": "ISC",
+  "scripts": {
+    "start": "webpack-dev-server",    <--- 追加
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "eslint": "^4.7.1",
+    "vue": "^2.4.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.7",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-vue": "^3.13.0",
+    "file-loader": "^0.11.2",
+    "style-loader": "^0.18.2",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2"
+  }
+}
+--------------------------------------------------------------------
