@@ -1,6 +1,6 @@
 <template>
 <section>
-  <h2 class="my-app">my template</h2>
+  <h2 class="my">my template</h2>
     <p>message : {{ message }}</p>
     <p>custom : {{ customMessage }}</p>
     <p><input :value="message" @input="upmes($event.target.value)"></p>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style>
-h2.my-app {
+h2.my {
   color : blue;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="main-app">
   <myComponent v-bind:message="message"
     v-bind:custom-message="customMessage"
     v-bind:on-load="onChildLoaded"
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style>
-#app {
+#main-app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
