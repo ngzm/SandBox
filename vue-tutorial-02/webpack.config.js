@@ -25,6 +25,11 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.css$/,
+        loader: ['style-loader', 'css-loader'],
+        include: /node_modules\/vuetify\/dist/
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
