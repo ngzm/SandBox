@@ -1,10 +1,31 @@
 <template>
-<section>
-  <h2 class="detail">Detail!!!</h2>
-</section>
+<v-layout row justify-center>
+  <v-dialog v-model="dialog" width="90%">
+
+    <v-btn icon slot="activator">
+      <v-icon medium class="white--text">play_circle_filled</v-icon>
+    </v-btn>
+
+    <v-card>
+      <v-card-title class="headline">Use Google's location service?</v-card-title>
+      <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Close</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</v-layout>
 </template>
 
 <script>
+export default {
+  data () {
+    return {
+      dialog: false
+    };
+  },
+};
 </script>
 
 <style>

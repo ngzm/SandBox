@@ -13,9 +13,8 @@ export const routes = [
   },
 ];
 
-export const routeTag = ` 
-  <p>
-    <router-link to="/">App Comp</router-link>
-    <router-link to="/other">Other Comp</router-link>
-  </p>
-`;
+export const routeLink = {
+  home: { to: '/', label: 'Home' },
+  other: { to: '/other', label: 'Other' },
+  detail: { to: '/other/detail', label: 'Detail' },
+};
