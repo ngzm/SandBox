@@ -81,3 +81,19 @@ module.exports = {
     }
 };
 
+-----------------------------------------
+9/24 Add
+webpack build で babel オブジェクトスプレッド演算子 エラー対策
+
+babel-preset-stage-2 を導入
+----------------------------------------
+naomac:vue-tutorial-02 naoki$ npm install --save-dev babel-preset-stage-2
+
+naomac:vue-tutorial-02 naoki$ cat .babelrc
+{
+  "presets": [
+    ["env", { "modules": false }],
+    "stage-2",      <---- 追加
+  ]
+}
+----------------------------------------

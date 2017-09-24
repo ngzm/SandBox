@@ -7,23 +7,52 @@
     </v-btn>
 
     <v-card>
-      <v-card-title class="headline">Use Google's location service?</v-card-title>
-      <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+      <v-card-title class="headline">{{ game.title }}</v-card-title>
+      <v-card-text>
+        <v-container fluid grid-list-xl>
+          <v-layout row wrap>
+            <v-flex sm12 md6>
+              <img :src="game.iconUri" style="width: 100%" />
+            </v-flex>
+            <v-flex sm12 md6>
+              <p>{{ game.description }}</p>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Close</v-btn>
+        <v-btn
+          class="white--text red darken-2"
+          dark
+          flat="flat"
+          @click.native="dialog = false"
+        >Play Game</v-btn>
+        <v-btn
+          class="white--text teal darken-2"
+          dark
+          flat="flat"
+          @click.native="dialog = false"
+        >Close</v-btn>
       </v-card-actions>
     </v-card>
+    </v-container>
   </v-dialog>
 </v-layout>
 </template>
 
 <script>
 export default {
+  props: {
+    id: { type: Number },
+  },
   data () {
     return {
-      dialog: false
+      dialog: false,
     };
+  },
+  computed: {
+    game: function() { return this.$store.getters.getGameById(this.id);},
   },
 };
 </script>
