@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   props: {
     id: { type: Number },
@@ -52,7 +54,11 @@ export default {
     };
   },
   computed: {
-    game: function() { return this.$store.getters.getGameById(this.id);},
+    // game: function() { return this.$store.getters.getGameById(this.id); },
+    game: function() { return this.getGameById(this.id); },
+    ...mapGetters([
+      'getGameById',
+    ]),
   },
 };
 </script>
