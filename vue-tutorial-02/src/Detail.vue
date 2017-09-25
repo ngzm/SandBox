@@ -42,7 +42,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters } = createNamespacedHelpers('games');
 
 export default {
   props: {

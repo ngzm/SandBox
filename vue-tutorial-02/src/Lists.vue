@@ -26,8 +26,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
 import Detail from './Detail.vue';
+
+const { mapGetters } = createNamespacedHelpers('games');
 
 export default {
   computed: {

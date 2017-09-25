@@ -8,13 +8,30 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+/*
+ * import { mapMutations } from 'vuex';
+ */
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapActions } = createNamespacedHelpers('games');
 
 export default {
+  /*
+   *
   methods: mapMutations([
     'setGames',
   ]),
+  */
+  methods: {
+    ...mapActions([
+      'fetchGames',   // this.fetchGames() ==> this.$store.dispatch('fetchGames')
+    ]),
+  },
   created() {
+    // --> this.$store.dispach('fetchGames', 1);
+    this.fetchGames(1);
+    /**
+     *
     const games = [
       {
         id: 1,
@@ -113,8 +130,10 @@ export default {
         star: 5,
         access: 200
       }];
-    // this.$store.commit('setGames', games);
+    // --> this.$store.commit('setGames', games);
     this.setGames(games);
+    *
+    */
   },
 };
 </script>
