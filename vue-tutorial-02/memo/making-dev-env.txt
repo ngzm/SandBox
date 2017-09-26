@@ -14,10 +14,6 @@ NAGA-MAC:vue-tutorial-02 nagazumi$ npm install --save-dev eslint
 + eslint@4.7.1
 added 83 packages in 16.902s
 
-NAGA-MAC:vue-tutorial-02 nagazumi$ npm install --save-dev eslint-plugin-vue@beta
-+ eslint-plugin-vue@3.13.0
-added 4 packages in 6.413s
-
 NAGA-MAC:vue-tutorial-02 nagazumi$ eslint --init
 ? How would you like to configure ESLint? Answer questions about your style
 ? Are you using ECMAScript 6 features? Yes
@@ -32,6 +28,9 @@ NAGA-MAC:vue-tutorial-02 nagazumi$ eslint --init
 ? What format do you want your config file to be in? JavaScript
 Successfully created .eslintrc.js file in /Users/nagazumi/DEV-NAO/SANDBOX/SandBox/vue-tutorial-02
 
+NAGA-MAC:vue-tutorial-02 nagazumi$ npm install --save-dev eslint-plugin-vue@beta
++ eslint-plugin-vue@3.13.0
+added 4 packages in 6.413s
 
 add eslint by vi
 ------------------
